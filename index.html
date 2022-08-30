@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download div</title>
+    <link rel="stylesheet" href="style.css">
+
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+		<div id="html-content-holder">
+            <div class="profile">
+                <img src="images/panda.jpeg" alt="" width="100" height="100" class="foto">
+                <div class="fullname">Kiigeeks</div>
+                <div class="role">Fullstack Developer</div>
+                <div class="about">
+                    Hallo semuanya, dalam pekerjaan sehari-hari, saya menggunakan bahasa pemograman dasar seperti HTML, CSS, JS, dan PHP.
+                    Saya memliki target untuk belajar dan menguasai bahasa pemograman seperti berikut. 
+                </div>
+                <div class="link">
+                    <img src="images/laravel.png" alt="">
+                    <img src="images/react.png" alt="">
+                    <img src="images/c.png" alt="">
+                    <img src="images/python.png" alt="">
+                    <img src="images/ruby.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-download" id="btn_convert">Download</button>
+
+    </div>
+
+    <h3 style="display: none">Download :</h3>
+	<div id="previewImg" style="display: none"></div>
+
+    <script>
+        document.getElementById("btn_convert").addEventListener("click", function () {
+            html2canvas(document.getElementById("html-content-holder"), {
+                allowTaint: true,
+                useCORS: true,
+            }).then(function (canvas) {
+                var link = document.createElement("a");
+                document.body.appendChild(link);
+                document.getElementById("previewImg").appendChild(canvas);
+                link.download = "fileName.png";
+                link.href = canvas.toDataURL();
+                link.target = "_blank";
+                link.click();
+            });
+        });
+    </script>
+
+</body>
+</html>
